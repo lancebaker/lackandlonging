@@ -133,6 +133,9 @@
   .village-small .door, .village-small .window rect { opacity: .9; }
   .q-icon { width: 22px; height: 20px; color: var(--sage); vertical-align: -3px; margin-right: 10px; }
   .tile-icon { width: 30px; height: 27px; color: var(--sage); display: block; margin-bottom: 12px; }
+  .chapter-nav { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; margin-top: 36px; }
+  .chapter-nav .back-bottom { margin: 0; }
+  .next-btn { margin-left: auto; background: var(--sage); color: var(--slate-deep); border: none; border-radius: 999px; padding: 12px 22px; font: inherit; font-size: 17px; cursor: pointer; }
 </style>
 </head>
 <body>
@@ -234,7 +237,7 @@
     <button class="back" onclick="showStory()">&larr; Back to Story Mode</button>
     <div class="hood-head"><div class="num" id="chapterNum"></div><h2 id="chapterTitle"></h2></div>
     <div id="chapterBody"></div>
-    <button class="back back-bottom" onclick="showStory()">&larr; Back to Story Mode</button>
+    <div class="chapter-nav" id="chapterNav"></div>
   </section>
 </main>
 
@@ -361,6 +364,10 @@ function openChapter(ci) {
     if (b.t === "stage") return `<p class="stage">${fmt(b.text)}</p>`;
     return `<p class="plain">${fmt(b.text)}</p>`;
   }).join("");
+  const isLast = ci === STORY.chapters.length - 1;
+  document.getElementById("chapterNav").innerHTML = `
+    <button class="back back-bottom" onclick="showStory()">&larr; Back to Story Mode</button>
+    <button class="next-btn" onclick="${isLast ? "showStory()" : `openChapter(${ci + 1})`}">${isLast ? "Back to chapters" : "Next chapter &rarr;"}</button>`;
   show("chapter");
 }
 
