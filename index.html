@@ -286,10 +286,10 @@ function buildMap() {
     const tspans = labelLines.map((l, k) => `<tspan x="${x}" dy="${k === 0 ? 0 : 32}">${l}</tspan>`).join("");
     g.insertAdjacentHTML("beforeend", `
       <g class="hood" tabindex="0" role="button" aria-label="Neighborhood ${h.n}: ${h.name}" onclick="openHood(${i})" onkeydown="if(event.key==='Enter')openHood(${i})">
-        ${houseSVG(x - 82, y - 38, 0.5, null, true)}
-        ${houseSVG(x + 82, y - 38, 0.5, null, true)}
-        ${houseSVG(x, y, 1, h.n, false)}
-        <text class="name" x="${x}" y="${y+88}" text-anchor="middle">${tspans}</text>
+        ${houseSVG(x - 62, y - 36, 0.42, null, true)}
+        ${houseSVG(x + 62, y - 36, 0.42, null, true)}
+        ${houseSVG(x, y, 0.85, h.n, false)}
+        <text class="name" x="${x}" y="${y+76}" text-anchor="middle">${tspans}</text>
       </g>`);
   });
   // Eighth house: Story Mode (sits on the right, after neighborhood 7)
